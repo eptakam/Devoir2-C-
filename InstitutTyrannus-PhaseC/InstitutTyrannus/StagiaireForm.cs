@@ -123,8 +123,11 @@ namespace InstitutTyrannus
             {
                 // Obtenir une référence vers le formulaire parent (CentreTyrannusForm)
                 Parent parentForm = this.MdiParent as Parent;
+                parentForm.fichierStr = this.Text;
 
                 SaveFileDialog sfd = parentForm.institutTyrannusSaveFileDialog; //sfd: save file dialog
+                sfd.FileName = parentForm.fichierStr;   // le nom par défaut du fichier enregistré
+                                                        // est celui du formulaire actif
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
