@@ -81,6 +81,7 @@
             this.infoRichTextBox.Size = new System.Drawing.Size(346, 98);
             this.infoRichTextBox.TabIndex = 9;
             this.infoRichTextBox.Text = "";
+            this.infoRichTextBox.SelectionChanged += new System.EventHandler(this.infoRichTextBox_SelectionChanged);
             // 
             // stagiairePictureBox
             // 
@@ -175,6 +176,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Stagiaire";
             this.Text = "Fiche des stagiaires  ";
+            this.Activated += new System.EventHandler(this.Stagiaire_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Stagiaire_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.stagiairePictureBox)).EndInit();
             this.ResumeLayout(false);

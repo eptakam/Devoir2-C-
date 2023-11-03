@@ -282,12 +282,10 @@ namespace InstitutTyrannus
                     else if (sender == clearToolStripMenuItem)
                     {
                         oInfoRichTextBox.Clear();
-                        oStagiaire.infoRichTextBox.Modified = true; // ???
                     }
                     else
                     {
                         oInfoRichTextBox.SelectAll();
-                        oStagiaire.infoRichTextBox.Modified = false;    //???
                     }
                 }
                 else    // Aucun RichTextBox n'a été trouvé
@@ -356,15 +354,15 @@ namespace InstitutTyrannus
 
                 if (sender == boldToolStripButton)  // le bouton Gras est pressé
                 {
-                    gererStyleTexte(FontStyle.Bold, boldToolStripButton);
+                    stagiaireCourant.ChangerAttributsPolice(FontStyle.Bold);
                 }
-                else if (sender == italicToolStripButton)
+                else if (sender == italicToolStripButton)   // le bouton Italic est pressé
                 {
-                    gererStyleTexte(FontStyle.Italic, italicToolStripButton);
+                    stagiaireCourant.ChangerAttributsPolice(FontStyle.Italic);
                 }
-                else
+                else    // le bouton Souligné est pressé
                 {
-                    gererStyleTexte(FontStyle.Underline, underlineToolStripButton);
+                    stagiaireCourant.ChangerAttributsPolice(FontStyle.Underline);
                 }
             }
             catch (Exception)
@@ -486,7 +484,7 @@ namespace InstitutTyrannus
                     {
                         if (Clipboard.ContainsText())
                             pasteToolStripMenuItem.Enabled = Clipboard.GetDataObject().GetDataPresent("System.String");
-                        else
+                        if (Clipboard.ContainsImage())
                             pasteToolStripMenuItem.Enabled = Clipboard.GetDataObject().GetDataPresent(DataFormats.MetafilePict);
                     }                        
                     else
@@ -496,7 +494,7 @@ namespace InstitutTyrannus
                 // Activer les boutons de la barre d'outils
                 foreach (ToolStripItem oToolStripItem in (institutTyrannusToolStrip.Items))
                     oToolStripItem.Enabled = true;
-
+                
                 if (Clipboard.ContainsText()) // Texte présent dans le clipboard
                     leftJustifyToolStripButton.Checked = true;
 
@@ -504,8 +502,8 @@ namespace InstitutTyrannus
                 cutToolStripButton.Enabled = false;
                 copyToolStripButton.Enabled = false;
 
-                if (!(Clipboard.ContainsText() || Clipboard.ContainsImage())) // pas de texte ou d'image dans le clipboard
-                    pasteToolStripButton.Enabled = false;
+                if (Clipboard.ContainsText() || Clipboard.ContainsImage()) // présence du texte ou d'une image dans le clipboard
+                    pasteToolStripButton.Enabled = true;
             }
             catch(Exception)
             {
@@ -614,39 +612,7 @@ namespace InstitutTyrannus
             institutTyrannusSaveFileDialog.AddExtension = extensionBool;
             institutTyrannusSaveFileDialog.FileName = fichierStr;
             institutTyrannusSaveFileDialog.CheckPathExists = verificationCheminBool;
-        }
-
-        private void gererStyleTexte(FontStyle style, ToolStripButton styleBouton)
-        {
-            try
-            {
-                Stagiaire stagiaireCourant = (Stagiaire)this.ActiveMdiChild;
-                bool aLeStyle = (stagiaireCourant.infoRichTextBox.SelectionFont?.Style & style) == style;   // Vérifier si le texte a le style choisie
-                FontStyle nouveauStyle = aLeStyle
-                        ? stagiaireCourant.infoRichTextBox.SelectionFont.Style & ~style // Retirer le style
-                        : stagiaireCourant.infoRichTextBox.SelectionFont.Style | style; // Ajouter le style
-                Font nouvellePolice = new Font(stagiaireCourant.infoRichTextBox.SelectionFont, nouveauStyle);
-
-                if (stagiaireCourant.infoRichTextBox.SelectionLength > 0)
-                {
-                    stagiaireCourant.infoRichTextBox.SelectionFont = nouvellePolice;
-                    styleBouton.Checked = !aLeStyle;    //toggle de aLeStyle
-                }
-                else
-                {
-                    int positionCurseur = stagiaireCourant.infoRichTextBox.SelectionStart;  // sauvegarder la position du curseur
-                                                                                            // (endroit ou l'utilisateur tape actuellement)
-                    stagiaireCourant.infoRichTextBox.SelectionFont = nouvellePolice; // Appliquer la nouvelle police
-                                                                                     // (avec le style mis à jour) à la sélection du texte
-                    stagiaireCourant.infoRichTextBox.Select(positionCurseur, 0);    // Déplacer la sélection du curseur au nouvel emplacement
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show(g.tMessagesErreurStr[(int)ce.ceErreurStyleTexte],
-                                "Style du texte", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
+        }       
 
         #endregion
     }

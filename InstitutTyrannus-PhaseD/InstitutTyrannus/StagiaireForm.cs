@@ -13,6 +13,8 @@
 
         But:            Enregistrer les informations d'un nouveau stagiaire
                         Enregistrer les fichiers portant l'extension .RTF
+                        Édition, Police et Alignement du texte
+                        Modifier les boutons de la barre d’outils et des menus d’après le texte sélectionné
 */
 
 using System;
@@ -29,6 +31,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using g = InstitutTyrannus.InstitutTyrannusClass;
+using ce = InstitutTyrannus.InstitutTyrannusClass.CodeErreurs;
 
 namespace InstitutTyrannus
 {
@@ -83,6 +86,118 @@ namespace InstitutTyrannus
         private void StagiaireTextBoxMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
             Modification = true;
+        }
+
+        #endregion
+
+        #region Mettre à jour les menus et la barre d'outils
+
+        private void infoRichTextBox_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Parent oParent = (Parent)this.MdiParent;    // Accéder à CentreTyrannus (formulaire parent)
+
+                // Mettre à jour les boutons Gras, Italic et Souligné 
+                if (infoRichTextBox.SelectionFont != null)  // Du texte ayant un style a été sélectionné
+                {
+                    oParent.boldToolStripButton.Checked = infoRichTextBox.SelectionFont.Bold;
+                    oParent.italicToolStripButton.Checked = infoRichTextBox.SelectionFont.Italic;
+                    oParent.underlineToolStripButton.Checked = infoRichTextBox.SelectionFont.Underline;
+                }
+
+                if (Clipboard.ContainsText() || Clipboard.ContainsImage())  // Texte ou image présent dans le clipboard
+                {
+                    oParent.pasteToolStripMenuItem.Enabled = true;
+                    oParent.pasteToolStripButton.Enabled = true;
+                }
+
+                // Mettre à jour les boutons copier, coller, couper, sélectionner et effacer
+                if (infoRichTextBox.SelectionLength > 0)    // Du texte a été sélectionné
+                {
+                    oParent.copyToolStripButton.Enabled = true;
+                    oParent.copyToolStripMenuItem.Enabled = true;
+                    oParent.cutToolStripButton.Enabled = true;
+                    oParent.cutToolStripMenuItem.Enabled = true;
+                    oParent.pasteToolStripButton.Enabled = true;
+                    oParent.pasteToolStripMenuItem.Enabled = true;
+                    oParent.clearToolStripMenuItem.Enabled = true;
+                    oParent.selectToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    oParent.copyToolStripButton.Enabled = false;
+                    oParent.copyToolStripMenuItem.Enabled = false;
+                    oParent.cutToolStripButton.Enabled = false;
+                    oParent.cutToolStripMenuItem.Enabled = false;
+                    oParent.pasteToolStripButton.Enabled = false;
+                    oParent.pasteToolStripMenuItem.Enabled = false;
+                    oParent.clearToolStripMenuItem.Enabled = false;
+                    oParent.selectToolStripMenuItem.Enabled = false;
+                }
+
+                // Mettre à jour les boutons d'alignement du texte 
+                if (infoRichTextBox.SelectionAlignment == HorizontalAlignment.Left)
+                {
+                    oParent.leftJustifyToolStripButton.Checked = true;
+                    oParent.centeredToolStripButton.Checked = false;
+                    oParent.rightJustifyToolStripButton.Checked = false;
+                }
+                else if (infoRichTextBox.SelectionAlignment == HorizontalAlignment.Center)
+                {
+                    oParent.leftJustifyToolStripButton.Checked = false;
+                    oParent.centeredToolStripButton.Checked = true;
+                    oParent.rightJustifyToolStripButton.Checked = false;
+                }
+                else if (infoRichTextBox.SelectionAlignment == HorizontalAlignment.Right)
+                {
+                    oParent.leftJustifyToolStripButton.Checked = false;
+                    oParent.centeredToolStripButton.Checked = false;
+                    oParent.rightJustifyToolStripButton.Checked = true;
+                }                
+                else
+                {
+                    // rien faire
+                }
+            }
+            catch(Exception) 
+            {
+                MessageBox.Show(g.tMessagesErreurStr[(int)ce.ceErreurIndeterminee],
+                                this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        #endregion
+
+        #region Etat des menus et de la barre d'outils en fonction du stagiaire actif
+
+        private void Stagiaire_Activated(object sender, EventArgs e)
+        {
+            infoRichTextBox_SelectionChanged(null, null);
+        }
+
+        #endregion
+
+        #region Gérer les styles du texte
+
+        public void ChangerAttributsPolice(FontStyle style)
+        {
+            try
+            {
+                if (infoRichTextBox.SelectionFont != null)
+                {
+                    if (infoRichTextBox.SelectionFont.FontFamily.IsStyleAvailable(style))
+                    {
+                        infoRichTextBox.SelectionFont = new Font(infoRichTextBox.SelectionFont.FontFamily,
+                            infoRichTextBox.SelectionFont.Size, infoRichTextBox.SelectionFont.Style ^ style);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(g.tMessagesErreurStr[(int)ce.ceErreurStyleTexte],
+                                "Style du texte", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         #endregion
@@ -215,6 +330,6 @@ namespace InstitutTyrannus
                                 telephoneMaskedTextBox.Text + Environment.NewLine;
         }
 
-        #endregion
+        #endregion       
     }
 }
