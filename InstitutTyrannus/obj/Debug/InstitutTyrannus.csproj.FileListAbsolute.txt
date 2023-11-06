@@ -1,0 +1,13 @@
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.csproj.AssemblyReference.cache
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.csproj.SuggestedBindingRedirects.cache
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.Parent.resources
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.Properties.Resources.resources
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.SplashScreenForm.resources
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.Stagiaire.resources
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.csproj.GenerateResource.cache
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.csproj.CoreCompileInputs.cache
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\bin\Debug\InstitutTyrannus.exe.config
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\bin\Debug\InstitutTyrannus.exe
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\bin\Debug\InstitutTyrannus.pdb
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.exe
+E:\2eme annee\PROG 1236 (Programmation d'applications de donnees multicouches sous .NET)\Projets\InstitutTyrannus-PhaseC (Emm)\InstitutTyrannus\obj\Debug\InstitutTyrannus.pdb
