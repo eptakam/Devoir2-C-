@@ -76,8 +76,7 @@ namespace InstitutTyrannus
             InitialiserVariables();
             AssocierImages();
             DesactiverOperationsMenuBarreOutils();
-            VerifierCaps();
-            cultureToolStripStatusLabel.Text = culture;
+            VerifierCaps();            
         }
 
         #endregion        
@@ -659,6 +658,7 @@ namespace InstitutTyrannus
             extensionBool = true;
             verificationCheminBool = true;
             culture = CultureInfo.CurrentCulture.NativeName;    // Capter la culture de la machine
+            cultureToolStripStatusLabel.Text = culture;
             createToolStripStatusLabel.Text = "Créer ou ouvrir un stagiaire...";
             statusInsertion = "INS";
 
@@ -686,7 +686,7 @@ namespace InstitutTyrannus
         {
             if (System.Console.CapsLock)    // La touche Majuscule du clavier est pressée
                 capsToolStripStatusLabel.Text = "MAJ";
-            else    // // La touche Majuscule du clavie n'est pas pressée
+            else    // La touche Majuscule du clavie n'est pas pressée
                 capsToolStripStatusLabel.Text = "          ";
         }
 

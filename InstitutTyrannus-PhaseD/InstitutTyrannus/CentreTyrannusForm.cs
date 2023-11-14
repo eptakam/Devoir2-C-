@@ -15,7 +15,7 @@
                         Ajouter une barre de menu, d'outils et d'état
                         Créer un nouveau stagiaire
                         Enregistrer et ouvrir les fichiers portant l'extension .RTF
-                        Activer/Désactiver les boutons et les menus lorsque les stagiaires ouvrent et ferment
+                        Activer/Désactiver les boutons et les menus lorsque les stagiaires s'ouvrent et se ferment
 */
 
 using System;
@@ -257,7 +257,7 @@ namespace InstitutTyrannus
                     }
                 }
 
-                if (indiceRichTextBoox != -1)   // un RichTexte a été trouvé
+                if (indiceRichTextBoox != -1)   // un RichTextBox a été trouvé
                 {
                     oInfoRichTextBox = (RichTextBox)this.ActiveMdiChild.Controls[indiceRichTextBoox];  // Stagiaire courant
 
@@ -290,7 +290,8 @@ namespace InstitutTyrannus
                 }
                 else    // Aucun RichTextBox n'a été trouvé
                 {
-                    //???
+                    MessageBox.Show(g.tMessagesErreurStr[(int)ce.ceErreurRichTextBox],
+                                 "RichTextBox", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch(Exception)

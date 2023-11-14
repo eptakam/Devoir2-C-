@@ -44,14 +44,15 @@ namespace InstitutTyrannus
             ceErreurSaveDocument,   // 2
             ceErreurAlignerTexte,    // = 3
             ceErreurStyleTexte,   // = 4
-            ceErreurIndeterminee    // = 5
+            ceErreurRichTextBox,   // = 5
+            ceErreurIndeterminee    // = 6
         }
 
         #endregion
 
         #region Messages d'erreurs
 
-        public static string[] tMessagesErreurStr = new string[6];
+        public static string[] tMessagesErreurStr = new string[7];
 
         /// <summary>
         /// Initialiser les messages d'erreurs
@@ -61,8 +62,9 @@ namespace InstitutTyrannus
             tMessagesErreurStr[(int)ce.ceErreurNewDocument] = "Impossible de créer un nouveau document.";
             tMessagesErreurStr[(int)ce.ceErreurOpenDocument] = "Vous ne pouvez ouvrir que des fichiers portant l'extension .rtf avec l'application Institut Tyrannus.";
             tMessagesErreurStr[(int)ce.ceErreurSaveDocument] = "L'extension RTF doit être utilisée.";
-            tMessagesErreurStr[(int)ce.ceErreurAlignerTexte] = "Impossible d'aligner le texte";
-            tMessagesErreurStr[(int)ce.ceErreurStyleTexte] = "Impossible d'appliquer le style au texte";
+            tMessagesErreurStr[(int)ce.ceErreurAlignerTexte] = "Impossible d'aligner le texte.";
+            tMessagesErreurStr[(int)ce.ceErreurStyleTexte] = "Impossible d'appliquer le style au texte.";
+            tMessagesErreurStr[(int)ce.ceErreurRichTextBox] = "Aucun RichTextBox n'a été trouvé.";
             tMessagesErreurStr[(int)ce.ceErreurIndeterminee] = "Une erreur indeterminée s'est produite, veuillez contacter la personne ressource.";
         }
 
